@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Produtos</title>
+</head>
+
+
+<body>
+    <script>
+        const produtos = [];
+        var opcoes;
+
+
+        do {
+            opcoes = prompt("1 - Adicionar produto \n 2 - Visualizar produtos \n 3 - Buscar produtos \n 4 - Remover produto \n 5 - Atualizar produto \n 6 - Sair");
+
+
+            if (opcoes == 1) {
+                const nome = prompt("Digite o nome do produto: ");
+                const preco = parseFloat(prompt("Digite o preço do produto: "));
+                const descricao = String(prompt("Digite a descrição do produto: "));
+                produtos.push({ nome, preco, descricao });
+
+                alert("Produto adcionado com sucesso!");
+            } else if (opcoes == 2) {
+                listaProdutos = "Produtos:\n";
+                produtos.forEach(produto => {
+                    listaProdutos += `Nome: ${produto.nome}, Preço: ${produto.preco}\nDescrição: ${produto.descricao}\n`;
+                });
+                alert(listaProdutos);
+            } else if (opcoes == 3) {
+                nome = prompt("O que deseja bsucar ? ");
+                produto = produtos.find(produto => produto.nome === nome);
+                if (produto) {
+                    alert(`Produto encontrado:\nNome: ${produto.nome}, Preço: ${produto.preco}\nDescrição: ${produto.descricao}`);
+                } else {
+                    alert("Produto não encontrado!");
+                }
+            } else if (opcoes == 4) {
+                nome = prompt("Qual produto deseja remover ? ");
+                remover = produtos.findIndex(produto => produto.nome === nome);
+                if (remover !== -1) {
+                    produtos.splice(remover, 1);
+                    alert("Produto removido com sucesso!");
+                } else {
+                    alert("Produto não encontrado!");
+                }
+            } else if (opcoes == 5) {
+                nome = prompt("Qual produto deseja atualizar? ");
+                index = produtos.findIndex(produto => produto.nome === nome);
+                if (index !== -1) {
+                    novoNome = prompt("Digite o nome do seu produto: ");
+                    novoPreco = parseFloat(prompt("Digite um novo preço para o seu produto: "));
+                    novaDescricao = String(prompt("Digite uma descrição para o seu produto: "));
+                    produtos[index] = { nome: novoNome, preco: novoPreco, descricao: novaDescricao };
+                    alert("Produto atualizado com sucesso!");
+                } else {
+                    alert("Produto não encontrado!");
+                }
+            }
+
+
+        } while (opcoes != 6);
+
+
+    </script>
+</body>
+
+
+</html
